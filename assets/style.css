@@ -1,7 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* border: 1px solid black; */
+}
+
+body {
+  font-family: "Lexend Deca", sans-serif;
+  background-color: #F5F5F5;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1em;
+}
+
+h1 {
+  font-size: 3.5em;
+  padding: 40px;
+}
+
+#weapons {
+  padding: 20px;
+}
+
+#weapons button {
+  font-size: 5em;
+  margin: 0 20px;
+  border-radius: 40px;
+  background-color: rgba(91, 157, 179, 0.7);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+#weapons button:hover {
+  background-color: rgb(149, 205, 224, 30%);
+}
+
+#player-choice, #computer-choice, #player-score, #computer-score {
+  font-size: 3em;
+}
+
+#player-choice, #computer-choice {
+  text-align: left;
+}
+
+#display-results {
+  font-size: 2.5em;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.game-displays {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+  font-size: 1.5em;
 }
