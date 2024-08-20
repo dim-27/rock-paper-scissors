@@ -12,6 +12,7 @@
   <main id="main">
     <div class="container">
       <h1>Rock Paper Scissors</h1>
+      <h2>Win this game and save the world from AI apocalypse :)</h2>
       <div id="weapons">
         <button class="weapon rock">✊</button>
         <button class="weapon paper">🖐️</button>
@@ -27,8 +28,14 @@
           <div id="computer-score">0</div>
         </div>
       </div>
-      <div id="display-results">It's a Draw!</div>
+      <div id="display-results"></div>
     </div> 
+    <div id="overlay">
+      <div id="modal">
+        <p id="game-result">Congrats! You WON!</p>
+        <input type="button" id="game-restart" value="Play Again?">
+      </div>
+    </div>
   </main>
   <script src="./assets/script.js"></script>
 </body>

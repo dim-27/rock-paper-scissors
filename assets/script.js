@@ -5,9 +5,13 @@ const weapons = document.getElementById('weapons');
 const playerChoice = document.getElementById('player-choixe');
 const computerChoice = document.getElementById('computer-choice');
 const displayResults = document.getElementById('display-results'); 
+const gameResult = document.getElementById('game-result');
 const playerScore = document.querySelector('#player-score');
 const cpuScore = document.querySelector('#computer-score');
 const getAllWeapons = document.querySelectorAll('#weapons');
+const showOverlay = document.querySelector('#overlay');
+const restartButton = document.querySelector('#game-restart');
+
 
 
 
@@ -33,6 +37,26 @@ getAllWeapons.forEach((weapon) => {
   })
 })
 
+function finalResults() {
+  if (humanScore === 5 || computerScore === 5) {
+    showOverlay.style.display = 'flex';
+    if(humanScore > computerScore) {
+      gameResult.textContent = 'Congrats! You Won the Game!';
+    } else {
+      gameResult.textContent = 'NO! You Lose :(' 
+    }
+  }
+}
+
+function gameRestart() {
+  showOverlay.style.display = 'none';
+  humanScore = 0;
+  computerScore = 0;
+  playerScore.innerHTML = 0;
+  cpuScore.innerHTML = 0;
+}
+
+
 function displayChoice(playerSelect) {
   let computerSelect = getComputerChoice();
 
@@ -51,5 +75,13 @@ function displayChoice(playerSelect) {
     displayResults.textContent = "You lost this round!"
     cpuScore.textContent = computerScore;
   }
+
+  finalResults();
 }
+
+restartButton.addEventListener('click', gameRestart);
+
+
+
+
 
