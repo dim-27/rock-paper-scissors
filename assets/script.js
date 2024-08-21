@@ -1,80 +1,87 @@
+let humanScore = 0;
+let computerScore = 0;
+
+const weapons = document.getElementById('weapons');
+const playerChoice = document.getElementById('player-choixe');
+const computerChoice = document.getElementById('computer-choice');
+const displayResults = document.getElementById('display-results'); 
+const gameResult = document.getElementById('game-result');
+const playerScore = document.querySelector('#player-score');
+const cpuScore = document.querySelector('#computer-score');
+const getAllWeapons = document.querySelectorAll('#weapons');
+const showOverlay = document.querySelector('#overlay');
+const restartButton = document.querySelector('#game-restart');
 
 
-function getPlayerChoice() {
-  let choice ;
-  let valid = false;
-
-  while(!valid) {
-    let userInput = window.prompt("Choose your weapon: Rock, Paper, or Scissors");
-    userInput = userInput.toLowerCase();
-
-   if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
-    choice = userInput;
-    valid = true;
-    break;
-   } else {
-    alert("You enterd a wrong input, please try again :)")
-    continue;
-   }
-  }
-
-  return choice;
-}
 
 
 // write the logic to get the computer choice
 function getComputerChoice() {
   let items = ["rock", "paper", "scissors"];
   const getRandom = items[Math.floor(Math.random() * items.length)];
+  console.log(getRandom);
   return getRandom;
 }
 
+getAllWeapons.forEach((weapon) => {
+  weapon.addEventListener('click',  (e) => {
+    btnClass = e.target.classList;
 
-function playGame() {
-  let computerScore = 0;
-  let playerScore = 0;
-  let maxRound = 5;
+    if (btnClass.contains('rock')) {
+      displayChoice('rock');      
+    } else if (btnClass.contains('paper')) {
+      displayChoice('paper');
+    } else {
+      displayChoice('scissors')
+    }
+  })
+})
 
-  function playRound(playerChoice, computerChoice) {
-    //declare human and computer score
-  
-    if (playerChoice === computerChoice) {
-      console.log("it's a tie!")
-    } else if (playerChoice === "rock" && computerChoice === 'scissors') {
-      playerScore++;
-    } else if (playerChoice === "paper" && computerChoice === "rock") {
-      playerScore++;
-    } else if (playerChoice === "scissors" && computerChoice === "paper") {
-      playerScore++;
-    } else if (playerChoice === "rock" && computerChoice === "paper") {
-      computerScore++;
-    } else if (playerChoice === "scissors" && computerChoice === "rock") {
-      computerScore++;
-    } else if (playerChoice === "paper" && computerChoice === "scissors") {
-      computerScore++;
-    } 
-  
-  }
-
-  while (maxRound > 0) {
-
-    const playerSelect = getPlayerChoice();
-    const computerSelect = getComputerChoice();
-
-    playRound(playerSelect, computerSelect);
-    console.log("You Selected", playerSelect);
-    console.log("The Computer selected", computerSelect)
-
-    console.log(`Updated Score: You ${playerScore} , Computer ${computerScore}`);
-    
-    maxRound--
-  }
-
-  if(playerScore > computerScore) {
-    alert("You Won! Congrats!")
-  } else {
-    alert("You Lose! What a Shame :(")
+function finalResults() {
+  if (humanScore === 5 || computerScore === 5) {
+    showOverlay.style.display = 'flex';
+    if(humanScore > computerScore) {
+      gameResult.textContent = 'Congrats! You Won the Game!';
+    } else {
+      gameResult.textContent = 'NO! You Lose :(' 
+    }
   }
 }
 
-playGame();
+function gameRestart() {
+  showOverlay.style.display = 'none';
+  humanScore = 0;
+  computerScore = 0;
+  playerScore.innerHTML = 0;
+  cpuScore.innerHTML = 0;
+}
+
+
+function displayChoice(playerSelect) {
+  let computerSelect = getComputerChoice();
+
+  if (playerSelect === computerSelect) {
+    displayResults.textContent = "It's a Draw!";
+  } else if (
+    (playerSelect === "rock" && computerSelect === "scissors") ||
+    (playerSelect === "paper" && computerSelect === "rock") ||
+    (playerSelect === "scissors" && computerSelect === "paper")
+  ) {
+    humanScore++;
+    displayResults.textContent = "CONGRATS, You Won this round!";
+    playerScore.textContent = humanScore;
+  } else {
+    computerScore++
+    displayResults.textContent = "You lost this round!"
+    cpuScore.textContent = computerScore;
+  }
+
+  finalResults();
+}
+
+restartButton.addEventListener('click', gameRestart);
+
+
+
+
+
