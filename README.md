@@ -11,4 +11,4 @@ Simple game of rock-paper-scissors as a learning tool from theodinproject
 
 ## Live Preview
 ---
-<br><br>**[Rock Paper Scissors Website](https://dim-27.github.io/rock-paper-scissors/)**
+**[Rock Paper Scissors Website](https://dim-27.github.io/rock-paper-scissors/)**
