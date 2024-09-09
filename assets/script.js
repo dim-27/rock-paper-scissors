@@ -13,8 +13,6 @@ const showOverlay = document.querySelector('#overlay');
 const restartButton = document.querySelector('#game-restart');
 
 
-
-
 // write the logic to get the computer choice
 function getComputerChoice() {
   let items = ["rock", "paper", "scissors"];
@@ -54,6 +52,7 @@ function gameRestart() {
   computerScore = 0;
   playerScore.innerHTML = 0;
   cpuScore.innerHTML = 0;
+  displayResults.innerHTML = '';
 }
 
 
